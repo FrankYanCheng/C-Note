@@ -1,0 +1,16 @@
+int ia[] = {1,2,3,4,5,6,7,8};
+	vector<int> val1(ia, ia + 8); 
+	vector<int>::iterator t;
+  for (t = val1.begin(); t != val1.end();++t )
+	{
+		if (t == val1.end())
+			break;
+		if (*t % 2 != 0)
+		{
+			t = val1.erase(t);
+			if (t == val1.end())
+				break;
+		}
+		cout << *t;
+注意当顺序容器erase的时候会将指针指向下一个元素，如果为end的时候已经是元素的下一个指针，即不能找到值的时候。所以注意end()的地方很重要
+另外，erase的时候原来的迭代器将会失效，所以要重新赋值，不然就变成了野指针

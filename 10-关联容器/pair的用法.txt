@@ -1,0 +1,19 @@
+简单的键值对
+头文件为utility
+pair<string, int> testpair;
+	string first;
+	int second;
+	vector<string>stringtest;	
+	vector<int>inttest;
+	while(cin >> first >> second)
+	{
+		testpair = make_pair(first, second);
+		cout << first << endl;
+		cout << second << endl;
+		stringtest.push_back(first);
+		inttest.push_back(second);
+	}
+	for (vector<string>::iterator t = stringtest.begin(); t != stringtest.end(); t++)
+	{
+		cout << *t << endl;
+	}

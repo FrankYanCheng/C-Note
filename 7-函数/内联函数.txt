@@ -1,0 +1,10 @@
+inline
+const string &shorterString(const string &s1, const string &s2)
+{
+	return s1.size() < s2.size() ? s1 : s2;
+}
+void main()
+{
+	cout << shorterString("Hello","World")<<endl;
+}
+在调用处展开，适合优化几行经常被调用的函数

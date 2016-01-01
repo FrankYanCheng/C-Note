@@ -1,0 +1,93 @@
+含有指针的类要特别注意复制控制，如果复制了指向有问题的指针，或者是对象已被删除的指针则会出错
+#include<iostream>
+#include<string>
+using namespace std;
+class HasPtr
+{
+public:
+	HasPtr(int *p, int i) :ptr(p), val(i){
+		/*cout << p << endl;
+		cout << i << endl;*/
+	};
+	int *get_ptr() const { return ptr; }
+	int get_int() const { return val; }
+	void set_ptr(int *p){ ptr = p; }
+	int get_ptr_val() const{ return *ptr; }
+	void set_ptr_val(int val) const{ *ptr = val; }
+	~HasPtr();
+
+private:
+	int *ptr;
+	int val;
+};
+
+
+
+HasPtr::~HasPtr()
+{
+}
+void main()
+{
+	int k2 = 12345;
+	int *k = &k2;
+	HasPtr t(k, 2);
+	cout<<"int"<<t.get_int() << endl;
+	cout << "ptr" << t.get_ptr()<<endl;
+	HasPtr test = t;
+	cout << test.get_ptr() << endl;
+	cout << "--------------" << endl;
+	t.set_ptr_val(23);
+	/*delete k;*/	 //删除了指针而不得知
+	cout << test.get_ptr_val() << endl;
+}
+3.-----------------------------------------------------------------------------------------
+智能指针
+#include<iostream>
+#include<string>
+using namespace std;
+class U_Ptr{
+	friend class HasPtr;
+	int *ip;
+	size_t use;
+	U_Ptr(int *p) :ip(p), use(1){};
+	~U_Ptr(){ delete ip; }
+};
+class HasPtr
+{
+public:
+	HasPtr(int *p, int i) :ptr(new U_Ptr(p)),val(i){};
+	HasPtr(const HasPtr &orig) :
+		ptr(orig.ptr), val(orig.val){
+		ptr->use++;
+	}
+	int *get_ptr() const { return ptr->ip; }
+	int get_int() const { return val; }
+	void set_ptr(int *p){ ptr->ip= p; }
+	int get_ptr_val() const{ return *ptr->ip; }
+	void set_ptr_val(int i) const{ *ptr->ip =i; }
+	HasPtr& operator=(const HasPtr&);
+	~HasPtr(){ if (--ptr->use == 0)delete ptr; };
+
+private:
+	U_Ptr *ptr;
+	int val;
+
+};
+
+HasPtr& HasPtr::operator=(const HasPtr &rhs)
+{
+	++rhs.ptr->use;
+	if (--ptr->use == 0)
+		delete ptr;
+	ptr = rhs.ptr;
+	val = rhs.val;
+	return *this;
+}
+void main()
+{
+	int k = 12345;
+	int jq = 1;
+	HasPtr t(&k, 3);
+	HasPtr j = t;
+	cout << j.get_ptr_val();
+}

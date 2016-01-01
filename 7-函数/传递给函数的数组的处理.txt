@@ -1,0 +1,34 @@
+对于非引用类型的数组越界问题的解决方法
+1.
+#include<iostream>
+#include<string>
+using namespace std;
+//使用标准库规范
+void test(const int *beg, const int *end)
+{
+	while (beg != end)
+	{
+		cout << *beg++ << endl;
+	}
+}
+void main()
+{
+	int j[5] = { 0, 1,2,3,4};
+	test(j, j + 5);
+
+}
+2.显示传递表示数组大小的形参
+void test2(const int ia[], size_t size)
+{
+	for (size_t i = 0; i != size; ++i)
+	{
+		cout << ia[i]<<endl;
+	}
+}
+void main()
+{
+	int j[] = { 0, 1 };
+	cout << sizeof(j) << endl;
+	cout << sizeof(*j) << endl;
+	test2(j, sizeof(j) / sizeof(*j));
+}

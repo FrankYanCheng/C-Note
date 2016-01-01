@@ -1,0 +1,13 @@
+是size_t类型，返回的是该类型所占用空间的大小
+	int i = 0;
+	int j = 10000000000;
+	cout << i++ << endl;//这次没变，到下一次才变化
+	cout << i << endl;
+	cout << ++j << endl;//一般使用前置，后置的更加消耗性能
+	
+    size_t t=sizeof j;
+	cout << t<< endl;
+所以不管j怎么变，结果都是一样的，因为int占用4个字节
+对于数组，int t[3] = { 1, 2, 3 };
+   cout<<sizeof t;结果是12
+   *t则是4；

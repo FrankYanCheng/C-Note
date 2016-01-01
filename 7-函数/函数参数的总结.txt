@@ -1,0 +1,34 @@
+1.非引用的形参
+这种方法简单，直接传递参数的副本进行操作，不过效率比较低，存储代价太大
+ （1）void test(int i) 
+  (2)void test(int *i)//这里是复制了指针，可以通过指针来改变地址所指向的值，但是不能改变地址，即i不能改变
+2.引用形参
+void test(&i,&j)
+只是使用了别名而已，如果不要修改可以加const
+3.传递指向指针的引用
+#include<iostream>
+#include<string>
+using namespace std;
+//v2是pj的别名而已，仅此而已，指向指针的引用
+void change(int *&v1, int *&v2)
+{
+	int *tmp = v2;
+	cout << v2<<endl;
+	cout << &v2 << endl;
+	cout << *v2 << endl;
+	v2 = v1;
+	v1 = tmp;
+}
+
+void main()
+{
+	int i = 10;
+	int j = 20;
+
+	int *pi = &i;
+	int *pj = &j;
+	cout << pj << endl;
+	change(pi, pj);
+	cout << pi << endl;
+	cout << pj << endl;
+}

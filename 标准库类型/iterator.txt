@@ -1,0 +1,15 @@
+每种容器都有自己的迭代器
+Vector<int>::iterator
+迭代器的begin指向开头，end指向最后一个元素的下一个，即刚好超出元素长度的那一个，充当哨兵的作用
+for (vector<string>::iterator iter = text.begin(); iter!= text.end(); ++iter)
+	{
+		cout << *iter;
+	}
+
+
+const只读操作
+for (vector<string>::const_iterator iter = text.begin(); iter!= text.end(); ++iter)
+	{
+	/*	*iter = "";*/
+		cout << *iter;
+	}

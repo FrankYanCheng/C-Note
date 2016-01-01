@@ -1,0 +1,83 @@
+1.=号或显示的创建一个临时对象的用于复制的时候，会将使用默认的带const的引用类型构造函数来初始化，称为复制初始化
+------------------------------------------
+所以这样的效率很低？
+在低级别优化上存在差异，如是说
+------------------------------------------
+2.
+class MyClass
+{
+public:
+	MyClass();
+	MyClass(const MyClass &t);
+	string test;
+	~MyClass();
+
+private:
+
+};
+MyClass::MyClass()
+{
+	test="你好";
+}
+//合成的复制构造函数
+MyClass::MyClass(const MyClass &t)
+{
+	test=t.test+"复制了";
+}
+
+MyClass::~MyClass()
+{
+}
+void main()
+{
+	MyClass a;
+	MyClass b = a;
+	cout << b.test << endl;
+}
+3.引用的原因
+复制构造函数调用自身会导致无限循环
+---------------------------------------------------------
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+class CExample
+{
+public:
+	CExample(int x) :m_nTest(x)
+	{
+		cout << "constructor with argument"<<endl;
+	}
+	CExample(const CExample &ex)
+	{
+		m_nTest = ex.m_nTest;
+		cout << "拷贝构造函数" << endl;
+	}
+	CExample& operator=(const CExample &ex)
+	{
+		cout << "赋值运算符重载" << endl;
+		m_nTest = ex.m_nTest;
+		return *this;
+	}
+	~CExample();
+	void myTestFunc(CExample ex)
+	{
+
+	}
+private:
+	int m_nTest;
+
+};
+
+
+CExample::~CExample()
+{
+}
+void main()
+{
+	CExample aaa(2);
+	CExample bbb(3);
+	bbb = aaa;
+	CExample ccc = aaa;
+	bbb.myTestFunc(aaa);
+}

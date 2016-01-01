@@ -1,0 +1,45 @@
+#include <iostream>
+#include<string>
+using namespace std;
+//string s;
+void main()
+{
+	/*string s2;
+	if (s2=="")
+	cout << "s "<< s << " s2  " << s2 << endl;*/
+	string line;
+	//读入一行值
+	while (getline(cin,line))
+	{
+		//中文中size占两个位子
+		cout << line.size() <<"*" << endl;
+	}
+}
+1.用size和empty判断字符书否为空
+2.size方法返回的值并不是整形数值，而是string类型定义的配套类型，通过他就能使库类型的使用与机器无关。因为在不同位上的机器整形存储的位数都是不一样的，如果用整形的话可能存储不了过大的数值。而size_type这种类型可以保证能够存
+#include <iostream>
+#include<string>
+using namespace std;
+//string s;
+void main()
+{
+	/*string s2;
+	if (s2=="")
+	cout << "s "<< s << " s2  " << s2 << endl;*/
+	string line;
+	//读入一行值
+	while (getline(cin,line))
+	{
+		//中文中size占两个位子
+	     string::size_type  a = line.size();
+		cout << a<<"*" << endl;
+	}
+}储足够大的数
+
+
+3.赋值操作的工作
+现将str1释放内存，然后分配足够大的内存存储str2，将str2的所有字符赋值到新分配的内存空间里
+
+4.比大小操作，先看相同字符的ascill码，再看字符串的大小
+5.字符串字面值不能有相加的形式，换言之，加号只能用在字符串+字面值上，而且字符串+字面值=字符串
+所以 string a="asd"+"zx"+s是错误的，而 "asd"+s+"zx"则是正确的

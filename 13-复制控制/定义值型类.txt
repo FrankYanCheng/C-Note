@@ -1,0 +1,50 @@
+这种方式换过指针，但是指向的是相同的值，复制值类型的对象
+
+
+#include<iostream>
+#include<string>
+using namespace std;
+class  test
+{
+public:
+	test();
+	 test(const test &t);
+	 int *ptr;
+	~ test();
+
+private:
+	
+
+};
+test::test()
+{
+	int k = 123;
+	ptr = &k;
+	cout << "test"<<endl;
+
+	; cout << ptr << endl;
+	cout << *ptr << endl;
+	
+
+}
+test::test(const test &t) :ptr(new int(*t.ptr))
+{
+	; cout << ptr << endl;
+	cout << *ptr << endl;
+}
+
+ test::~ test()
+{
+}
+void main()
+{
+	int g = 12345;
+	test tg;
+	tg.ptr = &g;
+	test a =tg;
+	cout<<a.ptr;
+	cout << *a.ptr;
+
+}
+
+

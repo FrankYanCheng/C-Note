@@ -1,0 +1,10 @@
+#include<iostream>
+void main()
+{
+	typedef double wages;
+	wages i = 0.9999;
+	std::cout<< i << std::endl;
+}
+1.隐藏特定类型的实现，强调使用类型的目的
+2.简化复杂的类型定义，使其更易理解，
+3.允许一种类型用于多种目的，同时使得每次使用该类型的目的明确？

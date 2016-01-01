@@ -1,0 +1,6 @@
+#include<iostream>
+void main()
+{
+	enum test{a=1,b,c,d};
+	//如何实现枚举的实例化，和枚举的自增长
+}

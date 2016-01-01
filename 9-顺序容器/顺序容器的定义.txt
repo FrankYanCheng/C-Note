@@ -1,0 +1,28 @@
+顺序容器是特定类型对象的集合，类似于数组，标准库中定义了三种类型的顺序容器，vector,list,deque；
+(1)顺序容器实现了默认构造函数的初始化#include<iostream>
+#include<vector>
+using namespace std;
+void main()
+{
+	vector<int> test(10);
+	for (vector<int>::size_type ix = 0; ix != test.size(); ix++)
+	{
+		cout << test[ix] << endl;
+	}
+}
+2.初始化
+const list<int>::size_type list_size = 64;
+	list<string> slist(list_size,"hel");
+	for (list<string>::iterator iter = slist.begin(); iter != slist.end(); ++iter)
+		cout<<*iter;
+3.
+char * test[] = {"1","2","3"};
+	size_t words_size = sizeof(test) / sizeof(char *);
+	//指针是一种迭代器
+	list<string> words(test, test + words_size);
+	for (list<string>::iterator iter = words.begin(); iter != words.end(); ++iter)
+		cout << *iter; 
+	test[1] = "tes";
+	//用迭代器复制的还是元素的副本而不是地址
+	for (list<string>::iterator iter = words.begin(); iter != words.end(); ++iter)
+		cout << *iter;

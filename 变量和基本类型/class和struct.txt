@@ -1,0 +1,16 @@
+#include<string>
+
+class a
+{
+public:
+private:
+	//为什么引入iostream和string头文件时，命名控件std都可以？
+	//一般不在类里对类成员进行初始化，通过构造函数来进行
+	std::string isbn;
+	unsigned units_sold;
+	double revenue;
+	
+};//记得分号
+//细节区别，struct在第一个访问标号前的任何一个成员都默认为public
+//而在class中，默认情况下为private模式
+区别就在于此？？？

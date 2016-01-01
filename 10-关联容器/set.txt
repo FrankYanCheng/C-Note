@@ -1,0 +1,11 @@
+	vector<int> ivec;
+	for (vector<int>::size_type i = 0; i != 10; i++)
+	{
+		ivec.push_back(i);
+		ivec.push_back(i+100);
+	}
+	set<int> iset(ivec.begin(), ivec.end());
+	cout << ivec.size() << endl;
+	cout << iset.size() << endl;
+------------------------------------------------------------------------------
+基本支持map运算，但是主要作用是看是否含有元素，所以不能含有重复的值

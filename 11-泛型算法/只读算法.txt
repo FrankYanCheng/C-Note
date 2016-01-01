@@ -1,0 +1,11 @@
+vector<int> test;
+	for (int i = 0; i != 11; i++)
+		test.push_back(i);
+	int sum = accumulate(test.begin(), test.end(), 0);
+	cout << sum<<endl;
+	list<string> test2;
+	for (int i = 0; i != 11; i++)
+		test2.push_back("Hello");
+	string sumt = accumulate(test2.begin(), test2.end(),string(""));
+	cout << sumt << endl;
+只是用了迭代器进行运算，最后一个参数是给出了计算的类型，必须使用

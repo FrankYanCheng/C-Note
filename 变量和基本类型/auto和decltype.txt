@@ -1,0 +1,12 @@
+	//int i = 0;double j = 20.3;
+	//auto sec = i + j;
+	//cout << sec;
+
+	//decltype((i))x =i;
+	//x = 3;
+	//cout << i;
+	int a = 3, b = 4;
+	decltype(a = b)d = a;
+	d = 5;
+	cout << a;
+表达式a=b得出的是对a类型的引用，动态监测类型

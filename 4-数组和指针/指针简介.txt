@@ -1,0 +1,27 @@
+#include<iostream>
+#include<string>
+using namespace std;
+void main()
+{
+	//指针应该是一种间接取值
+	//不要定义未初始化的指针，如果需要定义，则应定义为0
+	string s("hello world");
+	string *sp = &s;//sp为s的地址
+	//sp =0;
+	int t(3);
+	cout << sp << endl;
+	cout << &sp << endl;
+	cout << &s << endl;
+	//指针不能将他的地址直接用int类型，可能是因为int型如果改变的话直接影响了指针的地址，取值方向错误。如果const则不会出现此问题，所以比较安全。
+	//null是用于（大写）所有类型的吧？
+	int *tt =0;//指针取0，指针取值的地址也为0，但指针的地址不为0
+	cout << "tt" << tt << endl;
+	cout << "&tt" << &tt << endl;
+	//指针值改变的时候，是移动了指针的值sp指向的值改变了
+	*sp = "你好世界";
+	cout << sp << endl;
+	cout << &sp << endl;
+	cout << s << endl;
+
+
+}

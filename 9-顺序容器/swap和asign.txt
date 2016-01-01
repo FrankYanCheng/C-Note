@@ -1,0 +1,35 @@
+
+int ia[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+	vector<int> val1(ia, ia+8); 
+	vector<int>::iterator t;
+	int ia2[] = { 6, 7, 8 };
+	vector<int> val2(ia2, ia + 3);
+	vector<int>::iterator t2;
+	val1.swap(val2);
+	for (t = val2.begin(); t != val2.end(); ++t)
+	{
+		cout << *t;
+	}
+1.--------------------------------------------------------------------------
+swap只能交换现有空间的元素值，并且可以扩大空间。但是不能缩小空间。
+两者交换后val1后面的值将会出现溢出值，val2则扩大了空间
+--------------------------------------------------------------------------------
+int ia[] = { 1, 2, 3, 4, 5, 6, 7, 8 };
+	vector<int> val1(ia, ia+8); 
+	vector<int>::iterator t;
+	int ia2[] = { 6, 7, 8 };
+	vector<int> val2(ia2, ia + 3);
+	vector<int>::iterator t2=val2.begin();
+	vector<int> val3;
+	val3.assign(t2, t2 + 3);
+	val3.assign(t2, t2 + 1);
+	for (t = val3.begin(); t != val3.end(); ++t)
+	{
+		cout << *t<<endl;
+		
+	}
+2.---------------------------------------------------------------------------
+assign则不同，重新设置了容器的大小，后一次的会覆盖前一次的设置
+vector<int>::iterator t3 = val3.begin();
+val3.assign(t3, t3 + 2);
+不能复制自己的值，先删除再复制就找不到值了

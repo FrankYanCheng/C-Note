@@ -1,0 +1,76 @@
+这东西和泛型很想啊，叫做类模板。
+#include<vector>
+#include<iostream>
+#include<string>
+using namespace std;
+void main()
+{
+	/*vector<vector<int>>ivec;*/
+	string word;
+	vector<string> text;
+	//这个才是增加值的方法，不能使用text[i]==什么的形式，因为根本就找不到值，所以必须类似于栈的形式往后添加，下标操作只是进行了索引
+	while (cin>>word)
+	{
+		text.push_back(word);
+	}
+	//不等于size这种是为了让动态增加的时候不会出错，是c++的良好习惯
+	for (vector<int>::size_type ix = 0; ix != text.size(); ix++)
+	{
+		cout << text[ix] << endl;
+	}
+	//这种方式会导致编译期间不可发现的失败
+	//vector<int>s;
+	//cout << s[0];
+}
+
+
+	//习题1
+	vector<double> dvec;
+	double value;
+	while (cin >> value)
+	{
+		dvec.push_back(value);
+	}
+	if (dvec.size()% 2 == 0)
+	{
+		for (vector<double>::size_type ix = 0; ix != dvec.size(); ix=ix+2)
+		{
+			cout << dvec[ix] + dvec[ix + 1] << endl;
+		}
+	}
+	else
+	{
+		cout << "最后一个元素没有求和"<<endl;
+		for (vector<double>::size_type ix = 0; ix != dvec.size()-1; ix = ix + 2)
+		{
+			cout << dvec[ix] + dvec[ix + 1] << endl;
+		}
+
+	}
+	//习题1变种
+       //为什么当没有元素的时候size应该值为0，而ix显然是不等于-1的，这样不是会继续往前走么
+	vector<double> dvec;
+	double value;
+	while (cin >> value)
+	{
+		dvec.push_back(value);
+	}
+	if (dvec.size()% 2 == 0)
+	{
+		for (vector<double>::size_type ix = 0; ix != dvec.size(); ix=ix+2)
+		{
+			cout << dvec[ix] + dvec[dvec.size()-ix-1] << endl;
+		}
+	}
+	else
+	{
+		cout << "最后一个元素没有求和"<<endl;
+		for (vector<double>::size_type ix = 0; ix != dvec.size()-1; ix = ix + 2)
+		{
+			cout << dvec[ix] + dvec[dvec.size() - ix - 2] << endl;
+		}
+
+	}
+}
+
+

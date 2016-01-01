@@ -1,0 +1,15 @@
+#include<iostream>
+int main()
+{
+	int ival = 123;
+	int &refval = ival;
+	int j = refval;
+	refval += 1;
+	/*&refval = j;*/
+	std::cout<< "ival" << ival << "refval" << refval<<"j"<<j<<std::endl;
+}
+只能声明一次，引用是对象的另一个名字。应该说是引用了对象的地址
+
+
+2.对于普通的引用来说 int&i=24;这样的写法是错误的，因为指向的只能是变量的地址。
+所以对于const 虽然可以写成 const int &i=xx;形式，但是实质上是中间引入了一个变量，所以当xx改变时，i的值是不改变的

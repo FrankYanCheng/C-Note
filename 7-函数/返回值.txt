@@ -1,0 +1,54 @@
+对于void类型，可以返回void类型的函数
+#include<iostream>
+#include<string>
+using namespace std;
+void b()
+{
+	cout << "Hello China";
+}
+void a()
+{
+	cout << "Hello World";
+	return b();
+}
+
+void main()
+{
+	a();
+}
+1.返回非引用类型
+创建一个临时副本
+2，返回引用
+返回对象的本身，但是不要返回局部对象的引用
+string &test(string &s1)
+{
+	/*cout << &s1<<endl;*/
+	//这样写就是返回了一个局部的引用，调用完以后释放内存，也就找不到值了
+	string c = "Hello World";
+	string &d = c;
+	cout << &d << endl;
+	return d;
+}
+void main()
+{
+	string c = "Hello World";
+	string &d = c;
+	cout << "源地址" << &d << endl;
+	cout<<test(d);
+	
+}
+3.变态的通过返回值来修改值，这种是通过引用来进行修改的，所以可行
+char &get_value(string &str, string::size_type ix)
+{
+	return str[ix];
+}
+void main()
+{
+	string s("a value");
+	cout << s << endl;
+	get_value(s, 0) = 'A';
+	cout << s << endl;
+
+
+
+}

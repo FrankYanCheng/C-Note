@@ -1,0 +1,11 @@
+#include<iostream>
+#include<string>
+using namespace std;
+string Hello(string a = "Hello", string b = "World", string c = "黎明")
+{
+	return a + b + c;
+}
+void main()
+{
+	cout << Hello("你好","世界") << endl;
+}

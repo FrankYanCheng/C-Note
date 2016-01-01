@@ -1,0 +1,28 @@
+1.
+vector<int> test;
+	int te;
+	while (cin >> te)
+	{
+		test.insert(test.begin(), te);
+
+
+	}
+	cout << test.size() << "个元素" << endl;
+	cout << test.max_size() << "最多容纳的元素" << endl;
+	for (vector<int>::iterator it = test.begin(); it != test.end(); it++)
+	{
+		cout << *it;
+	}
+基本操作还有resize扩大容器容量
+------------------------------------------------------------------------------
+vector<string> t = { "1", "Hello", "World" };
+	vector<string>::reference val = t.front();
+	cout << val<<endl;
+	vector<string>::reference val2 = t.back();
+	cout << val2 << endl;
+-------------类比如此----------------------------------------------------------
+vector<string> t = { "1", "Hello", "World" };
+	vector<string>::reference val = *t.begin();
+	cout << val<<endl;
+	vector<string>::reference val2 = t.back();
+	cout << val2 << endl;

@@ -1,0 +1,59 @@
+间接访问私有变量
+
+#include<iostream>
+#include<string>
+#include<vector>
+using namespace std;
+class testing
+{
+	friend class hi;
+public:
+	testing(int i);
+	~testing();
+	void display();
+
+private:
+	int privatea = 1;
+
+};
+testing::testing(int i)
+{
+}
+
+void testing::display()
+{
+	cout << privatea << endl;
+}
+testing::~testing()
+{
+};
+class hi
+{
+public:
+	hi(testing &t);
+	~hi();
+
+private:
+
+};
+
+hi::hi(testing &t)
+{
+	cout<<t.privatea<<endl;
+	t.privatea += 3;
+	cout << t.privatea << endl;
+}
+
+hi::~hi()
+{
+};
+void main()
+{
+	testing g(3);
+	hi  r(g);
+	g.display();
+	int testg = 234;
+	int *tr = &testg;
+	cout << *tr << endl;
+
+}
